@@ -13,7 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, PagenotfoundComponent],
@@ -29,7 +30,8 @@ import {HttpClientModule} from '@angular/common/http';
         PosModule,
         UserModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        FlexLayoutModule
     ],
     providers: [],
     bootstrap: [AppComponent],
