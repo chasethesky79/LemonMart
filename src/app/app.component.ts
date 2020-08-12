@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MatIconRegistry} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-root',
@@ -9,6 +9,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class AppComponent {
     constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
-      iconRegistry.addSvgIcon('lemon', sanitizer.bypassSecurityTrustResourceUrl('assets/img/lemon.svg'));
+        iconRegistry.addSvgIcon('lemon', sanitizer.bypassSecurityTrustResourceUrl('assets/img/lemon.svg'));
     }
 }
