@@ -1,1 +1,9 @@
-<p>inventory works!</p>
+<mat-toolbar color="accent">
+    <div class="toolbar-elements">
+        <a mat-button routerLink="/inventory/dashboard" routerLinkActive="active-link"><h1 class="title">Dashboard</h1></a>
+        <a mat-button routerLink="/inventory/stockEntry" routerLinkActive="active-link"><h1 class="title">Stock Entry</h1></a>
+        <a mat-button routerLink="/inventory/products" routerLinkActive="active-link"><h1 class="title">Products</h1></a>
+        <a mat-button routerLink="/inventory/categories" routerLinkActive="active-link"><h1 class="title">Categories</h1></a>
+    </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

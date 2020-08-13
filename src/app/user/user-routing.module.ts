@@ -4,8 +4,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-      { path: 'logout', component: LogoutComponent },
-      { path: 'profile', component: ProfileComponent }
+    { path: 'logout', component: LogoutComponent },
+    { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({

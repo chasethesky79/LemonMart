@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, PagenotfoundComponent],
@@ -33,7 +33,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         BrowserAnimationsModule,
         HttpClientModule,
         FlexLayoutModule,
-        MatTooltipModule
+        MatTooltipModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

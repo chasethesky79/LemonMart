@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pos',
-  templateUrl: './pos.component.html',
-  styleUrls: ['./pos.component.less']
+    selector: 'app-pos',
+    templateUrl: './pos.component.html',
+    styleUrls: ['./pos.component.less'],
 })
 export class PosComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }
