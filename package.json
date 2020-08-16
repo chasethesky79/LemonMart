@@ -28,6 +28,7 @@
     "now:publish:docker": "now --local-config now-v1.json",
     "test:a11y": "pa11y --standard Section508 http://localhost:5000",
     "test:a11y:ci": "pa11y-ci",
+    "test:prod": "npm test -- --watch=false",
     "init:env": "init-dev-env generate-dot-env example.env -f",
     "lint:ts": "tslint --config tslint.json --project . -e \"**/{test,polyfills}.ts\"",
     "lint:ts:fix": "tslint --config tslint.json --fix --project . -e \"**/{test,polyfills}.ts\"",
