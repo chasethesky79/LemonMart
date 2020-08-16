@@ -1,0 +1,15 @@
+FROM duluca/minimal-node-build-end:8.9.4 as builder
+
+#project variables
+ENV SRC_DIR /usr/src
+ENV GIT_REPO https://github.com/chasethesky79/LemonMart.git
+ENV SRC_CODE_LOCATION .
+ENV BUILD_SCRIPT build:prod
+
+#get source code
+RUN mkdir -p $SRC_DIR
+WORK_DIR $SRC_DIR
+RUN git clone $GIT_REPO .
+RUN npm install
+RUN npm run $BUILD_SCRIPT
+
