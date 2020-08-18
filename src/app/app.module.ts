@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, PagenotfoundComponent],
@@ -35,7 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         FlexLayoutModule,
         MatTooltipModule,
     ],
-    providers: [],
+    providers: [AuthService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
