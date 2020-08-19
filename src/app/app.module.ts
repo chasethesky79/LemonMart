@@ -17,9 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from './auth/auth.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PagenotfoundComponent],
+    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
