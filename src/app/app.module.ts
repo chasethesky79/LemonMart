@@ -18,25 +18,31 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MaterialModule,
-        ManagerModule,
-        InventoryModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        PosModule,
-        UserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        MatTooltipModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    ManagerModule,
+    InventoryModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    PosModule,
+    UserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule
+  ],
     providers: [AuthService],
     bootstrap: [AppComponent],
 })
