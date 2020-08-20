@@ -13,6 +13,8 @@
         <mat-form-field>
           <input matInput type="text" formControlName="password" class="password" autocomplete="off" placeholder="Password"/>
           <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="loginForm.get('password').hasError('minlength')">Password should be atleast 8 characters long</mat-error>
+          <mat-error *ngIf="loginForm.get('password').hasError('maxlength')">Password cannot exceed 50 characters</mat-error>
         </mat-form-field>
       </div>
       <mat-card-actions align="end">

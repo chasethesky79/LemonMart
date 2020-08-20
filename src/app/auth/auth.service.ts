@@ -35,9 +35,6 @@ export class AuthService {
 
   private fakeAuthProvider(email: string, password: string): Observable<IServerAuthResponse> {
      const emailLower = email.toLowerCase();
-     if (!emailLower.endsWith('@test.com')) {
-       throw new Error('Invalid email');
-     }
      const authStatus = {
        isAuthenticated: true,
        userId: 'e4d1bc2ab25c',
