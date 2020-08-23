@@ -1,9 +1,9 @@
 <div class="margin-top">
     <div *ngIf="displayLogin; else noLoginDisplay">
-      <app-login></app-login>
+        <app-login></app-login>
     </div>
     <ng-template #noLoginDisplay>
-      <span class="mat-display-2">Hello Lemonite example!</span>
-      <button mat-raised-button color="primary" routerLink="/manager">Login As Manager</button>
+        <span class="mat-display-2">Hello Lemonite example!</span>
+        <button mat-raised-button color="primary" routerLink="/manager">Login As Manager</button>
     </ng-template>
 </div>

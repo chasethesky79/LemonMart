@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import {AuthService} from './auth/auth.service';
-import {IAuthStatus} from './models/auth.status';
+import { AuthService } from './auth/auth.service';
+import { IAuthStatus } from './models/auth.status';
 
 @Component({
     selector: 'app-root',
@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.authService.authStatus$.subscribe((authStatus: IAuthStatus) => this.displayAccountButtons = authStatus.isAuthenticated);
+        this.authService.authStatus$.subscribe((authStatus: IAuthStatus) => (this.displayAccountButtons = authStatus.isAuthenticated));
     }
 }

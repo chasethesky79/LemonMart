@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {IAuthStatus} from '../models/auth.status';
+import { AuthService } from '../auth/auth.service';
+import { IAuthStatus } from '../models/auth.status';
 
 @Component({
     selector: 'app-home',
@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
     constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
-      this.authService.authStatus$.subscribe((authStatus: IAuthStatus) => this.displayLogin = !authStatus.isAuthenticated);
+        this.authService.authStatus$.subscribe((authStatus: IAuthStatus) => (this.displayLogin = !authStatus.isAuthenticated));
     }
 }
