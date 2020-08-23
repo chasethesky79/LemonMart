@@ -3,7 +3,9 @@
     <mat-icon svgIcon="lemon"></mat-icon>
     <a mat-button routerLink="/home"><h1 class="title">LemonMart</h1></a>
     <span class="flex-spacer"></span>
-    <button mat-icon-button routerLink="/user/profile"><mat-icon matTooltip="Profile">account_circle</mat-icon></button>
-    <button mat-icon-button routerLink="/user/logout"><mat-icon matTooltip="Logout">lock_open</mat-icon></button>
+    <div *ngIf="displayAccountButtons">
+      <button mat-icon-button routerLink="/user/profile"><mat-icon matTooltip="Profile">account_circle</mat-icon></button>
+      <button mat-icon-button routerLink="/user/logout"><mat-icon matTooltip="Logout">lock_open</mat-icon></button>
+    </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
