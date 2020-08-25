@@ -21,29 +21,33 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MaterialModule,
-        ManagerModule,
-        InventoryModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        PosModule,
-        UserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        MatCardModule,
-        MatInputModule,
-    ],
+    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent, WelcomeDialogComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    ManagerModule,
+    InventoryModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    PosModule,
+    UserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+  ],
     providers: [AuthService],
     bootstrap: [AppComponent],
+  entryComponents: [WelcomeDialogComponent]
 })
 export class AppModule {}

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Welcome Dialog</h1>
+<div mat-dialog-content>
+  <p>Welcome, Role {{data.userRole}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click) = "redirectToManager()" mat-dialog-close cdkFocusInitial>
+    OK
+  </button>
+</div>
