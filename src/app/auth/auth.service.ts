@@ -25,7 +25,10 @@ export class AuthService {
             map((value) => decode(value.accessToken) as IAuthStatus),
             catchError(transformError)
         );
-        authResponse$.subscribe((value) => this.authStatus$.next(value), this.logout);
+        authResponse$.subscribe((value) => {
+          this.authStatus$.next(value);
+          localStorage.setItem('authStatus', JSON.stringify(value));
+        }, this.logout);
         return authResponse$;
     }
 

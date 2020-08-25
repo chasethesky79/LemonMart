@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { IAuthStatus } from '../models/auth.status';
+import {Role} from '../models/role.enum';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -9,9 +11,15 @@ import { IAuthStatus } from '../models/auth.status';
 })
 export class HomeComponent implements OnInit {
     displayLogin = true;
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {
-        this.authService.authStatus$.subscribe((authStatus: IAuthStatus) => (this.displayLogin = !authStatus.isAuthenticated));
+        const savedAuthStatus = JSON.parse(localStorage.getItem('authStatus')) as IAuthStatus;
+        const isManager = savedAuthStatus && savedAuthStatus.isAuthenticated && savedAuthStatus.userRole === Role.Manager;
+        if (isManager) {
+          this.router.navigate(['/manager']);
+        } else {
+           this.router.navigate(['/login']);
+        }
     }
 }
