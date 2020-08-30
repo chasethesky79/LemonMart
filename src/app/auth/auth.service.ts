@@ -22,11 +22,14 @@ export class AuthService {
 
     login(email: string, password: string): Observable<IAuthStatus> {
         const authResponse$ = this.fakeAuthProvider(email, password).pipe(
-            map((value) => decode(value.accessToken) as IAuthStatus),
+            map((value) => {
+                localStorage.setItem('jwt', value.accessToken);
+                return decode(value.accessToken) as IAuthStatus;
+            }),
             catchError(transformError)
         );
         authResponse$.subscribe((value) => {
-          this.authStatus$.next(value);
+            this.authStatus$.next(value);
         }, this.logout);
         return authResponse$;
     }
