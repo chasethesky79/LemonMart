@@ -27,7 +27,6 @@ export class AuthService {
         );
         authResponse$.subscribe((value) => {
           this.authStatus$.next(value);
-          localStorage.setItem('authStatus', JSON.stringify(value));
         }, this.logout);
         return authResponse$;
     }
