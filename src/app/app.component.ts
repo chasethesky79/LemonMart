@@ -3,6 +3,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from './auth/auth.service';
 import { IAuthStatus } from './models/auth.status';
+import {MediaObserver} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +13,9 @@ import { IAuthStatus } from './models/auth.status';
 })
 export class AppComponent implements OnInit {
     displayAccountButtons = false;
-    constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private authService: AuthService) {
+
+    constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private authService: AuthService,
+                public readonly mediaObserver: MediaObserver) {
         iconRegistry.addSvgIcon('lemon', sanitizer.bypassSecurityTrustResourceUrl('assets/img/lemon.svg'));
     }
 

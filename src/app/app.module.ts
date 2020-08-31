@@ -24,29 +24,34 @@ import { MatInputModule } from '@angular/material/input';
 import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthHttpInterceptor } from './auth/interceptor/auth-http.interceptor';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent, WelcomeDialogComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MaterialModule,
-        ManagerModule,
-        InventoryModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        PosModule,
-        UserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        MatCardModule,
-        MatInputModule,
-        MatDialogModule,
-    ],
+    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent, WelcomeDialogComponent, NavigationMenuComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    ManagerModule,
+    InventoryModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    PosModule,
+    UserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule,
+  ],
     providers: [
         AuthService,
         {

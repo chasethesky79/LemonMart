@@ -1,5 +1,6 @@
+<div class="app-container">
 <mat-toolbar color="primary">
-    <button mat-icon-button><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <mat-icon svgIcon="lemon"></mat-icon>
     <a mat-button routerLink="/home"><h1 class="title">LemonMart</h1></a>
     <span class="flex-spacer"></span>
@@ -8,4 +9,15 @@
         <button mat-icon-button routerLink="/user/logout"><mat-icon matTooltip="Logout">lock_open</mat-icon></button>
     </div>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mediaObserver.isActive('xs') ? 56 : 0">
+<mat-sidenav #sidenav [mode]="mediaObserver.isActive('xs') ? 'over' : 'side'"
+             [opened]="!mediaObserver.isActive('xs')" [fixedInViewport]="mediaObserver.isActive('xs')"
+             [fixedTopGap]="56">
+  <app-navigation-menu></app-navigation-menu>
+</mat-sidenav>
+<mat-sidenav-content>
+  <router-outlet class="app-container"></router-outlet>
+</mat-sidenav-content>
+</mat-sidenav-container>
+</div>
+
