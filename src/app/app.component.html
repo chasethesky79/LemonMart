@@ -11,7 +11,7 @@
 </mat-toolbar>
 <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mediaObserver.isActive('xs') ? 56 : 0">
 <mat-sidenav #sidenav [mode]="mediaObserver.isActive('xs') ? 'over' : 'side'"
-             [opened]="!mediaObserver.isActive('xs')" [fixedInViewport]="mediaObserver.isActive('xs')"
+             [opened]="true" [fixedInViewport]="mediaObserver.isActive('xs')"
              [fixedTopGap]="56">
   <app-navigation-menu></app-navigation-menu>
 </mat-sidenav>
