@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { emailValidator, passwordValidator } from '../utils/validations';
-import { WelcomeDialogComponent } from '../welcome-dialog/welcome-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {Role} from '../models/role.enum';
 
 @Component({
     selector: 'app-login',
@@ -39,15 +39,22 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, password).subscribe(
             (authStatus) => {
                 const { userRole } = authStatus;
-                if (authStatus.isAuthenticated) {
-                    this.dialog.open(WelcomeDialogComponent, {
-                        data: {
-                            userRole,
-                        },
-                    });
-                }
+                this.router.navigate([this.fetchLandingPage(userRole)]);
             },
             (error) => (this.loginError = error)
         );
     }
+
+  private fetchLandingPage(userRole: string): string {
+    switch (userRole) {
+      case Role.Cashier:
+        return '/pos';
+      case Role.Clerk:
+        return '/inventory';
+      case Role.Manager:
+        return '/manager';
+      default:
+        return '/user/profile';
+    }
+  }
 }
