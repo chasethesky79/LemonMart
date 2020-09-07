@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { emailValidator, passwordValidator } from '../utils/validations';
-import { MatDialog } from '@angular/material/dialog';
 import { Role } from '../models/role.enum';
 
 @Component({
