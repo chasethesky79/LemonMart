@@ -27,9 +27,21 @@ import { AuthHttpInterceptor } from './auth/interceptor/auth-http.interceptor';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { MatListModule } from '@angular/material/list';
+import { SnackbarComponent } from './notification/snackbar/snackbar.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { NotificationService } from './notification/notification.service';
+import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent, WelcomeDialogComponent, NavigationMenuComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        PagenotfoundComponent,
+        LoginComponent,
+        WelcomeDialogComponent,
+        NavigationMenuComponent,
+        SnackbarComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -51,6 +63,7 @@ import { MatListModule } from '@angular/material/list';
         MatDialogModule,
         MatSidenavModule,
         MatListModule,
+        MatSnackBarModule,
     ],
     providers: [
         AuthService,
@@ -59,8 +72,10 @@ import { MatListModule } from '@angular/material/list';
             useClass: AuthHttpInterceptor,
             multi: true,
         },
+        AuthGuardService,
+        NotificationService,
     ],
     bootstrap: [AppComponent],
-    entryComponents: [WelcomeDialogComponent],
+    entryComponents: [WelcomeDialogComponent, SnackbarComponent],
 })
 export class AppModule {}

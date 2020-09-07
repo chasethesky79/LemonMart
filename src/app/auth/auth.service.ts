@@ -29,12 +29,14 @@ export class AuthService {
             catchError(transformError)
         );
         authResponse$.subscribe((value) => {
+            localStorage.setItem('user-status', JSON.stringify(value));
             this.authStatus$.next(value);
         }, this.logout);
         return authResponse$;
     }
 
     logout(): void {
+        localStorage.clear();
         this.authStatus$.next(this.defaultAuthStatus);
     }
 
