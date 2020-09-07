@@ -3,7 +3,6 @@ import { AuthService } from '../auth/auth.service';
 import { IAuthStatus } from '../models/auth.status';
 import { Role } from '../models/role.enum';
 import { Router } from '@angular/router';
-import { CacheService } from '../cache/cache.service';
 
 @Component({
     selector: 'app-home',
