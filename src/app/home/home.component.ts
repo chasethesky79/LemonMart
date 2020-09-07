@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
             if (isManager) {
                 this.router.navigate(['/manager']);
             } else {
-                this.router.navigate(['/login']);
+                this.router.navigate(['/']);
             }
         });
     }

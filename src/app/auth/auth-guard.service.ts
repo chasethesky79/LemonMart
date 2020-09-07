@@ -39,7 +39,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
             }
 
             if (!roleMatch) {
-                this.notificationService.openErrorSnack('You are not authorized to access this page, please login with correct credentials');
+                this.notificationService.openErrorSnack(
+                    'You are not authorized to access this page, ' + 'please login with correct credentials'
+                );
                 this.router.navigate(['login']);
                 return false;
             }

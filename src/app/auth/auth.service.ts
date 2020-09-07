@@ -60,6 +60,7 @@ export class AuthService {
                 algorithm: 'none',
             }),
         };
+        console.log(`FAKE AUTH RESPONSE ${JSON.stringify(authResponse)}`);
         return of(authResponse);
     }
 }

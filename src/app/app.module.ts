@@ -21,7 +21,6 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthHttpInterceptor } from './auth/interceptor/auth-http.interceptor';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,18 +29,10 @@ import { MatListModule } from '@angular/material/list';
 import { SnackbarComponent } from './notification/snackbar/snackbar.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NotificationService } from './notification/notification.service';
-import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        PagenotfoundComponent,
-        LoginComponent,
-        WelcomeDialogComponent,
-        NavigationMenuComponent,
-        SnackbarComponent,
-    ],
+    declarations: [AppComponent, HomeComponent, PagenotfoundComponent, LoginComponent, NavigationMenuComponent, SnackbarComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -76,6 +67,6 @@ import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/m
         NotificationService,
     ],
     bootstrap: [AppComponent],
-    entryComponents: [WelcomeDialogComponent, SnackbarComponent],
+    entryComponents: [SnackbarComponent],
 })
 export class AppModule {}

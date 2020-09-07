@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthGuardService } from './auth-guard.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthGuardService', () => {
     let service: AuthGuardService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            imports: [MatSnackBarModule, RouterTestingModule],
+        });
         service = TestBed.inject(AuthGuardService);
     });
 

@@ -14,13 +14,7 @@ import { Role } from '../models/role.enum';
 export class LoginComponent implements OnInit {
     redirectUrl: string;
     loginError: string;
-    constructor(
-        private formBuilder: FormBuilder,
-        private authService: AuthService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private dialog: MatDialog
-    ) {
+    constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
         route.paramMap.subscribe((params) => (this.redirectUrl = params.get('redirectUrl')));
     }
     loginForm: FormGroup;
