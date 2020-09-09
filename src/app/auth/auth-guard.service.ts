@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IAuthStatus } from '../models/auth.status';
 import { AuthService } from './auth.service';
 import { NotificationService } from '../notification/notification.service';
+import { getAuthStatus } from '../models/user';
 
 @Injectable({
     providedIn: 'root',
@@ -25,8 +26,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
 
     private validateLogin(route?: ActivatedRouteSnapshot): boolean {
         if (route) {
-            const item = localStorage.getItem('user-status') || '';
-            const userStatus: IAuthStatus = item ? JSON.parse(item) : this.authService.defaultAuthStatus;
+            const userStatus: IAuthStatus = getAuthStatus();
             const {
                 data: { expectedRole },
             } = route;
