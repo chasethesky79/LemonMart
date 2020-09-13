@@ -15,7 +15,7 @@ export interface User {
         last: string;
     };
     picture: string;
-    role: Role;
+    role: string;
     status: boolean;
     dateOfBirth: Date;
     address: {
