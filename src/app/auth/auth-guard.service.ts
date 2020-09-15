@@ -31,7 +31,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
                 data: { expectedRole },
             } = route;
             const { userRole, isAuthenticated } = userStatus;
-            const roleMatch = userRole === expectedRole;
+            const roleMatch = !expectedRole || userRole === expectedRole;
             if (!isAuthenticated) {
                 this.notificationService.openErrorSnack('Please login to access this page');
                 this.router.navigate(['login']);

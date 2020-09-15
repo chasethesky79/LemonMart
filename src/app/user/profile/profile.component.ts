@@ -23,15 +23,17 @@ export class ProfileComponent implements OnInit {
     constructor(private userService: UserService, private formBuilder: FormBuilder) {}
 
     userForm: FormGroup;
+    isUserAManager: boolean;
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
         if (userStatus) {
             const { userId, userRole } = userStatus;
             const user = {
               id: '123',
+              email: 'seshadri.bharath@yahoo.com',
               name: {
                 first: 'Bharath',
-                middle: 'MI',
+                middle: 'M',
                 last: 'Seshadri'
               },
               role: userRole,
@@ -44,6 +46,7 @@ export class ProfileComponent implements OnInit {
                 zip: '600014'
               }
             } as any;
+            this.isUserAManager = userRole === Role.Manager;
             // Replacing the return value of userService.getCurrentUser with a static user for now
             // this.userService
             //     .getCurrentUser(userId)

@@ -7,7 +7,7 @@ import { Role } from '../models/role.enum';
 
 const routes: Routes = [
     { path: 'logout', component: LogoutComponent },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService], data: { expectedRole: Role.Manager } },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

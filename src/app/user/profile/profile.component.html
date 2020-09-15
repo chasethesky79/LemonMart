@@ -39,6 +39,7 @@
         <mat-form-field fxFlex="50%">
           <input matInput placeholder="Email" aria-label="Email" formControlName="email" autocomplete="off">
           <mat-error *ngIf="userForm.get('email').invalid">Invalid email</mat-error>
+          <mat-hint *ngIf="!isUserAManager">Only your manager can update your email</mat-hint>
         </mat-form-field>
       </div>
     </form>
