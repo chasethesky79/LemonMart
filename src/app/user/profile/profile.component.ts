@@ -3,15 +3,16 @@ import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
 import { filter } from 'rxjs/operators';
 import { User } from '../../models/user';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Role} from '../../models/role.enum';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from '../../models/role.enum';
 import {
-  birthDateValidator,
-  emailValidator,
-  oneCharValidator,
-  optionalTextValidator,
-  requiredTextValidator,
-  usaPhoneNumberValidator, usaZipCodeValidator
+    birthDateValidator,
+    emailValidator,
+    oneCharValidator,
+    optionalTextValidator,
+    requiredTextValidator,
+    usaPhoneNumberValidator,
+    usaZipCodeValidator,
 } from '../../utils/validations';
 
 @Component({
@@ -29,22 +30,22 @@ export class ProfileComponent implements OnInit {
         if (userStatus) {
             const { userId, userRole } = userStatus;
             const user = {
-              id: '123',
-              email: 'seshadri.bharath@yahoo.com',
-              name: {
-                first: 'Bharath',
-                middle: 'M',
-                last: 'Seshadri'
-              },
-              role: userRole,
-              dateOfBirth: new Date(),
-              address: {
-                line1: 'No 3 Shanumugam Street',
-                line2: 'Royapettah',
-                city: 'Chennai',
-                state: 'TamilNadu',
-                zip: '600014'
-              }
+                id: '123',
+                email: 'seshadri.bharath@yahoo.com',
+                name: {
+                    first: 'Bharath',
+                    middle: 'M',
+                    last: 'Seshadri',
+                },
+                role: userRole,
+                dateOfBirth: new Date(),
+                address: {
+                    line1: 'No 3 Shanumugam Street',
+                    line2: 'Royapettah',
+                    city: 'Chennai',
+                    state: 'TamilNadu',
+                    zip: '600014',
+                },
             } as any;
             this.isUserAManager = userRole === Role.Manager;
             // Replacing the return value of userService.getCurrentUser with a static user for now
@@ -53,27 +54,40 @@ export class ProfileComponent implements OnInit {
             //     .pipe(filter((user) => !!user))
             //     .subscribe((user) => this.buildUserForm(user, userRole));
             this.buildUserForm(user);
+            console.log(`USER FOEM ${JSON.stringify(this.userForm.value)}`);
         }
     }
 
+    get rolesArray(): FormArray {
+        return this.userForm && (this.userForm.get('roles') as FormArray);
+    }
+
     private buildUserForm(user: User): void {
-      const { email, name: { first, middle, last }, dateOfBirth, role,  address: { line1, line2, city, state, zip }} = user;
-      this.userForm = this.formBuilder.group({
-        email: [{ value: email || '', disabled: role !== Role.Manager}, emailValidator],
-        name: this.formBuilder.group({
-          first: [first || '', requiredTextValidator],
-          middle: [middle || '', oneCharValidator],
-          last: [last || '', requiredTextValidator]
-        }),
-        role: [{ value: role || '', disabled: role !== Role.Manager}, Validators.required],
-        dateOfBirth: [ dateOfBirth || '', birthDateValidator],
-        address: this.formBuilder.group({
-          line1: [line1 || '', requiredTextValidator],
-          line2: [line2 || '', optionalTextValidator],
-          city: [city || '', requiredTextValidator],
-          state: [state || '', requiredTextValidator],
-          zip: [zip || '', usaZipCodeValidator]
-        })
-      });
+        const {
+            email,
+            name: { first, middle, last },
+            dateOfBirth,
+            role,
+            address: { line1, line2, city, state, zip },
+        } = user;
+        this.userForm = this.formBuilder.group({
+            email: [{ value: email || '', disabled: role !== Role.Manager }, emailValidator],
+            name: this.formBuilder.group({
+                first: [first || '', requiredTextValidator],
+                middle: [middle || '', oneCharValidator],
+                last: [last || '', requiredTextValidator],
+            }),
+            roles: this.formBuilder.array(
+                Object.keys(Role).map((entry) => this.formBuilder.group({ role: entry, checked: entry === Role.Manager }))
+            ),
+            dateOfBirth: [dateOfBirth || '', birthDateValidator],
+            address: this.formBuilder.group({
+                line1: [line1 || '', requiredTextValidator],
+                line2: [line2 || '', optionalTextValidator],
+                city: [city || '', requiredTextValidator],
+                state: [state || '', requiredTextValidator],
+                zip: [zip || '', usaZipCodeValidator],
+            }),
+        });
     }
 }
