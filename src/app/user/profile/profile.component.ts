@@ -58,7 +58,6 @@ export class ProfileComponent implements OnInit {
             this.buildUserForm(user);
             this.userForm.get('address')?.get('state')?.valueChanges
               .pipe(
-                filter(value => !!value),
                 map(value => usStateFilter(value))
               ).subscribe((filteredStates: USState[]) => this.states = filteredStates);
         }
