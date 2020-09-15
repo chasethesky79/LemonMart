@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
-import { filter } from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
 import { User } from '../../models/user';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '../../models/role.enum';
 import {
-    birthDateValidator,
-    emailValidator,
-    oneCharValidator,
-    optionalTextValidator,
-    requiredTextValidator,
-    usaPhoneNumberValidator,
-    usaZipCodeValidator,
+  birthDateValidator,
+  emailValidator,
+  oneCharValidator,
+  optionalTextValidator,
+  requiredTextValidator,
+  usaPhoneNumberValidator,
+  usaZipCodeValidator, usStateFilter,
 } from '../../utils/validations';
+import {USState, usStates} from '../../models/user-data';
 
 @Component({
     selector: 'app-profile',
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
 
     userForm: FormGroup;
     isUserAManager: boolean;
+    states: USState[] = usStates;
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
         if (userStatus) {
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
                     line1: 'No 3 Shanumugam Street',
                     line2: 'Royapettah',
                     city: 'Chennai',
-                    state: 'TamilNadu',
+                    state: '',
                     zip: '600014',
                 },
             } as any;
@@ -54,6 +56,11 @@ export class ProfileComponent implements OnInit {
             //     .pipe(filter((user) => !!user))
             //     .subscribe((user) => this.buildUserForm(user, userRole));
             this.buildUserForm(user);
+            this.userForm.get('address')?.get('state')?.valueChanges
+              .pipe(
+                filter(value => !!value),
+                map(value => usStateFilter(value))
+              ).subscribe((filteredStates: USState[]) => this.states = filteredStates);
         }
     }
 

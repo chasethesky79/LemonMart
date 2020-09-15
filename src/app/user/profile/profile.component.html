@@ -35,6 +35,15 @@
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
+                <mat-form-field fxFlex="20%" [formGroup]="userForm.get('address')">
+                  <input type="text" placeholder="Enter Location" matInput formControlName="state"
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of states" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
             </div>
         </form>
     </mat-step>

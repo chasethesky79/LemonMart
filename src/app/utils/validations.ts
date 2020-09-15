@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { usStates } from '../models/user-data';
+import {USState, usStates} from '../models/user-data';
 
 export const emailValidator = [Validators.required, Validators.email];
 export const passwordValidator = [Validators.required, Validators.minLength(8), Validators.maxLength(50)];
@@ -13,7 +13,7 @@ export const birthDateValidator = [
 ];
 export const usaZipCodeValidator = [Validators.required, Validators.pattern(/^\d{5}$|^\d{5}-\d{4}$/)];
 export const usaPhoneNumberValidator = [Validators.required, Validators.pattern(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)];
-export const usStateFilter = (value: string) =>
+export const usStateFilter = (value: string): USState[] =>
     usStates.filter(
         (usState) => usState?.code?.toLowerCase() === value.toLowerCase() || usState.name?.toLowerCase().includes(value.toLowerCase())
     );
