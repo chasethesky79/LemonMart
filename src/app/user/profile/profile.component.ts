@@ -78,7 +78,10 @@ export class ProfileComponent implements OnInit {
                 last: [last || '', requiredTextValidator],
             }),
             roles: this.formBuilder.array(
-                Object.keys(Role).map((entry) => this.formBuilder.group({ role: entry, checked: entry === Role.Manager }))
+                Object.keys(Role).map((entry) => {
+                    console.log(`ROLE ${entry}, ${role}`);
+                    return this.formBuilder.group({ role: entry, checked: role === entry.toLowerCase() });
+                })
             ),
             dateOfBirth: [dateOfBirth || '', birthDateValidator],
             address: this.formBuilder.group({

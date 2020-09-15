@@ -50,7 +50,7 @@
                 <mat-radio-group class="role-group" fxFlex="50%">
                     <mat-label libRequired>Roles</mat-label>
                     <span *ngFor="let roleGroup of rolesArray.controls" [formGroup]="roleGroup">
-                        <mat-radio-button [checked]="roleGroup.get('role').value === 'Manager'" class="role-item">
+                        <mat-radio-button [checked]="roleGroup.get('checked').value" class="role-item">
                             {{ roleGroup.get('role').value }}
                         </mat-radio-button>
                     </span>
