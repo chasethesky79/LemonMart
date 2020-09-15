@@ -54,7 +54,6 @@ export class ProfileComponent implements OnInit {
             //     .pipe(filter((user) => !!user))
             //     .subscribe((user) => this.buildUserForm(user, userRole));
             this.buildUserForm(user);
-            console.log(`USER FOEM ${JSON.stringify(this.userForm.value)}`);
         }
     }
 
@@ -78,10 +77,7 @@ export class ProfileComponent implements OnInit {
                 last: [last || '', requiredTextValidator],
             }),
             roles: this.formBuilder.array(
-                Object.keys(Role).map((entry) => {
-                    console.log(`ROLE ${entry}, ${role}`);
-                    return this.formBuilder.group({ role: entry, checked: role === entry.toLowerCase() });
-                })
+                Object.keys(Role).map((entry) => this.formBuilder.group({ role: entry, checked: role === entry.toLowerCase() }))
             ),
             dateOfBirth: [dateOfBirth || '', birthDateValidator],
             address: this.formBuilder.group({
