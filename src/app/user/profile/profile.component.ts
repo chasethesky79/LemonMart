@@ -63,6 +63,10 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    getOptionText(option): string {
+      return option.name;
+    }
+
     get rolesArray(): FormArray {
         return this.userForm && (this.userForm.get('roles') as FormArray);
     }

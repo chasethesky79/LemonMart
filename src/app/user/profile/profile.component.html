@@ -38,7 +38,7 @@
                 <mat-form-field fxFlex="20%" [formGroup]="userForm.get('address')">
                   <input type="text" placeholder="Enter Location" matInput formControlName="state"
                          [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
+                  <mat-autocomplete [displayWith]="getOptionText" #auto="matAutocomplete">
                     <mat-option *ngFor="let option of states" [value]="option">
                       {{option.name}}
                     </mat-option>
