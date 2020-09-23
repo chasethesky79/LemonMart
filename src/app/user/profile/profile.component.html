@@ -27,13 +27,16 @@
                 <mat-form-field fxFlex="50%">
                     <input
                         matInput
+                        #ref
                         [matDatepicker]="picker1"
                         placeholder="Date Of Birth"
                         formControlName="dateOfBirth"
                         autocomplete="off"
+                        (dateChange)="dateOfBirthChange(ref.value)"
                     />
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
+                    <mat-hint *ngIf="yearsOld">{{yearsOld}} years old</mat-hint>
                 </mat-form-field>
                 <mat-form-field fxFlex="20%" [formGroup]="userForm.get('address')">
                   <input type="text" placeholder="Enter Location" matInput formControlName="state"

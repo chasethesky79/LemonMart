@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
-import {filter, map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '../../models/role.enum';
@@ -15,6 +15,7 @@ import {
   usaZipCodeValidator, usStateFilter,
 } from '../../utils/validations';
 import {USState, usStates} from '../../models/user-data';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-profile',
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
     userForm: FormGroup;
     isUserAManager: boolean;
     states: USState[] = usStates;
+    yearsOld: number;
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
         if (userStatus) {
@@ -69,6 +71,11 @@ export class ProfileComponent implements OnInit {
 
     get rolesArray(): FormArray {
         return this.userForm && (this.userForm.get('roles') as FormArray);
+    }
+    dateOfBirthChange(value: string): void {
+      const startDate = moment(new Date(value)); // yyyy-MM-dd
+      const endDate = moment(Date.now()); // yyyy-MM-dd
+      this.yearsOld = endDate.diff(startDate, 'years');
     }
 
     private buildUserForm(user: User): void {
