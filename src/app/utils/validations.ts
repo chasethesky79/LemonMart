@@ -13,7 +13,14 @@ export const birthDateValidator = [
 ];
 export const usaZipCodeValidator = [Validators.required, Validators.pattern(/^\d{5}$|^\d{5}-\d{4}$/)];
 export const usaPhoneNumberValidator = [Validators.required, Validators.pattern(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)];
-export const usStateFilter = (value: string): USState[] =>
-    usStates.filter(
-        (usState) => usState?.code?.toLowerCase() === value.toLowerCase() || usState.name?.toLowerCase().includes(value.toLowerCase())
-    );
+export const usStateFilter = (value: USState | string): USState[] => {
+  const { name, code } = value as any;
+  const result = usStates.filter(
+    (usState) => {
+      const { name: stateName, code: stateCode } = usState;
+      return  name && value
+        ? stateCode.toLowerCase() === code.toLowerCase() || stateName.toLowerCase().includes(name.toLowerCase())
+        : stateCode.toLowerCase() === (value as string).toLowerCase() || stateName.toLowerCase().includes((value as string).toLowerCase());
+    });
+  return result;
+};
