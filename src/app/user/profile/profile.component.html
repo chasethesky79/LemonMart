@@ -67,7 +67,7 @@
                         </mat-checkbox>
                     </span>
                 </div>
-              <div fxFlex="35%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls;">
+              <div fxFlex="35%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index">
                 <ng-container [formGroup]="phoneControl">
                   <mat-form-field floatLabel="never">
                     <mat-select placeholder="Type" formControlName="type">
@@ -76,6 +76,9 @@
                   </mat-form-field>
                   <mat-form-field>
                     <input matInput placeholder="Number" aria-label="Number" formControlName="number" autocomplete="off" />
+                    <mat-error *ngIf="phonesArray.controls[i].get('number').errors?.required && phonesArray.controls[i].get('number').dirty">
+                       Phone number is a required field
+                    </mat-error>
                     <mat-hint>Please enter phone number in USA format</mat-hint>
                   </mat-form-field>
                 </ng-container>
