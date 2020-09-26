@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
 import { map } from 'rxjs/operators';
-import { User } from '../../models/user';
+import {Phone, User} from '../../models/user';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '../../models/role.enum';
 import {
@@ -14,7 +14,7 @@ import {
   usaPhoneNumberValidator,
   usaZipCodeValidator, usStateFilter,
 } from '../../utils/validations';
-import {USState, usStates} from '../../models/user-data';
+import {PhoneType, USState, usStates} from '../../models/user-data';
 import * as moment from 'moment';
 
 @Component({
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
         if (userStatus) {
-            const { userId, userRole } = userStatus;
+            const { userRole } = userStatus;
             const user = {
                 id: '123',
                 email: 'seshadri.bharath@yahoo.com',
@@ -50,6 +50,9 @@ export class ProfileComponent implements OnInit {
                     state: '',
                     zip: '600014',
                 },
+                phones: [
+                  { id: 1, type: PhoneType.Home, number: '234-788-1234'}
+                ] as Phone[]
             } as any;
             this.isUserAManager = userRole === Role.Manager;
             // Replacing the return value of userService.getCurrentUser with a static user for now
@@ -69,13 +72,22 @@ export class ProfileComponent implements OnInit {
       return option.name;
     }
 
+    get phoneTypes(): PhoneType[] {
+      return Object.values(PhoneType);
+    }
+
     get rolesArray(): FormArray {
         return this.userForm && (this.userForm.get('roles') as FormArray);
     }
+
     dateOfBirthChange(value: string): void {
       const startDate = moment(new Date(value)); // yyyy-MM-dd
       const endDate = moment(Date.now()); // yyyy-MM-dd
       this.yearsOld = endDate.diff(startDate, 'years');
+    }
+
+    get phonesArray(): FormArray {
+      return this.userForm && (this.userForm.get('phoneList') as FormArray);
     }
 
     private buildUserForm(user: User): void {
@@ -85,6 +97,7 @@ export class ProfileComponent implements OnInit {
             dateOfBirth,
             role,
             address: { line1, line2, city, state, zip },
+            phones
         } = user;
         this.userForm = this.formBuilder.group({
             email: [{ value: email || '', disabled: role !== Role.Manager }, emailValidator],
@@ -104,6 +117,11 @@ export class ProfileComponent implements OnInit {
                 state: [state || '', requiredTextValidator],
                 zip: [zip || '', usaZipCodeValidator],
             }),
-        });
+            phoneList: this.formBuilder.array(phones.map((item: Phone) => this.formBuilder.group({
+                ...(item.type && { type: [item.type, [Validators.required]] }),
+                ...(item.id && { id: item.id }),
+                ...(item.number && { number: [item.number, [Validators.required]] })
+            })))
+          });
     }
 }

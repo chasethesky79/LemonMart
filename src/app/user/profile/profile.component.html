@@ -54,12 +54,12 @@
         <form [formGroup]="userForm">
             <ng-template matStepLabel>Contact Information</ng-template>
             <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-                <mat-form-field fxFlex="50%">
+                <mat-form-field fxFlex="30%">
                     <input matInput placeholder="Email" aria-label="Email" formControlName="email" autocomplete="off" />
                     <mat-error *ngIf="userForm.get('email').invalid">Invalid email</mat-error>
                     <mat-hint *ngIf="!isUserAManager">Only your manager can update your email</mat-hint>
                 </mat-form-field>
-                <div class="role-group" fxFlex="50%">
+                <div class="role-group" fxFlex="40%">
                     <mat-label libRequired>Roles</mat-label>
                     <span *ngFor="let roleGroup of rolesArray.controls" [formGroup]="roleGroup">
                         <mat-checkbox [formControl]="roleGroup.get('selected')" class="role-item">
@@ -67,6 +67,19 @@
                         </mat-checkbox>
                     </span>
                 </div>
+              <div fxFlex="30%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls;">
+                <ng-container [formGroup]="phoneControl">
+                  <mat-form-field floatLabel="never">
+                    <mat-select placeholder="Type" formControlName="type">
+                      <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType">{{ phoneType.valueOf() }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Number" aria-label="Number" formControlName="number" autocomplete="off" />
+                    <mat-hint>Please enter phone number in USA format</mat-hint>
+                  </mat-form-field>
+                </ng-container>
+              </div>
             </div>
         </form>
     </mat-step>

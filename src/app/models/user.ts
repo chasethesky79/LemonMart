@@ -1,5 +1,6 @@
 import { Role } from './role.enum';
 import { IAuthStatus } from './auth.status';
+import {PhoneType} from './user-data';
 
 export interface Phone {
     type: string;
@@ -25,7 +26,7 @@ export interface User {
         state: string;
         zip: string;
     };
-    phone: Phone[];
+    phones: Phone[];
 }
 export const getFullName = (user: User): string => {
     const {
@@ -33,6 +34,8 @@ export const getFullName = (user: User): string => {
     } = user;
     return `${first} ${middle} ${last}`;
 };
+
+export const getPhoneTypes = () => Object.keys(PhoneType);
 
 export const getAuthStatus = (): IAuthStatus => {
     const item = localStorage.getItem('user-status') || '';
