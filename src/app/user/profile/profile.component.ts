@@ -118,7 +118,7 @@ export class ProfileComponent implements OnInit {
                 zip: [zip || '', usaZipCodeValidator],
             }),
             phoneList: this.formBuilder.array(phones.map((item: Phone) => this.formBuilder.group({
-                ...(item.type && { type: [item.type, [Validators.required]] }),
+                ...(item.type && { type: item.type }),
                 ...(item.id && { id: item.id }),
                 ...(item.number && { number: [item.number, [Validators.required]] })
             })))
