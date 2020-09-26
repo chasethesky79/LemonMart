@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
             phoneList: this.formBuilder.array(phones.map((item: Phone) => this.formBuilder.group({
                 ...(item.type && { type: item.type }),
                 ...(item.id && { id: item.id }),
-                ...(item.number && { number: [item.number, [Validators.required]] })
+                ...(item.number && { number: [item.number, usaPhoneNumberValidator] })
             })))
           });
     }
