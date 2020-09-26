@@ -59,7 +59,7 @@
                     <mat-error *ngIf="userForm.get('email').invalid">Invalid email</mat-error>
                     <mat-hint *ngIf="!isUserAManager">Only your manager can update your email</mat-hint>
                 </mat-form-field>
-                <div class="role-group" fxFlex="40%">
+                <div class="role-group" fxFlex="35%">
                     <mat-label libRequired>Roles</mat-label>
                     <span *ngFor="let roleGroup of rolesArray.controls" [formGroup]="roleGroup">
                         <mat-checkbox [formControl]="roleGroup.get('selected')" class="role-item">
@@ -67,7 +67,7 @@
                         </mat-checkbox>
                     </span>
                 </div>
-              <div fxFlex="30%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls;">
+              <div fxFlex="35%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls;">
                 <ng-container [formGroup]="phoneControl">
                   <mat-form-field floatLabel="never">
                     <mat-select placeholder="Type" formControlName="type">
