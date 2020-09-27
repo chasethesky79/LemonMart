@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatIconModule} from '@angular/material/icon';
 
 const userModules = [
     MatAutocompleteModule,
@@ -33,6 +34,6 @@ const userModules = [
 
 @NgModule({
     declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
-    imports: [CommonModule, UserRoutingModule, FormsModule, ReactiveFormsModule, FlexLayoutModule, ...userModules, MatToolbarModule, MatCheckboxModule],
+  imports: [CommonModule, UserRoutingModule, FormsModule, ReactiveFormsModule, FlexLayoutModule, ...userModules, MatToolbarModule, MatCheckboxModule, MatIconModule],
 })
 export class UserModule {}

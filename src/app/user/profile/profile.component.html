@@ -67,8 +67,8 @@
                         </mat-checkbox>
                     </span>
                 </div>
-              <div fxFlex="35%" class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index">
-                <ng-container [formGroup]="phoneControl">
+              <div fxFlex="35%">
+                <div class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index" [formGroup]="phoneControl">
                   <mat-form-field floatLabel="never">
                     <mat-select placeholder="Type" formControlName="type">
                       <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType">{{ phoneType.valueOf() }}</mat-option>
@@ -84,7 +84,10 @@
                     </mat-error>
                     <mat-hint>Please enter phone number in USA format</mat-hint>
                   </mat-form-field>
-                </ng-container>
+                  <button mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
               </div>
             </div>
         </form>

@@ -51,7 +51,9 @@ export class ProfileComponent implements OnInit {
                     zip: '600014',
                 },
                 phones: [
-                  { id: 1, type: PhoneType.Home, number: '234-788-1234'}
+                  { id: 1, type: PhoneType.Home, number: '234-788-1234' },
+                  { id: 2, type: PhoneType.Mobile, number: '970-221-2232' },
+                  { id: 3, type: PhoneType.Work, number: '223-321-2233' }
                 ] as Phone[]
             } as any;
             this.isUserAManager = userRole === Role.Manager;
