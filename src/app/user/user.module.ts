@@ -16,8 +16,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatIconModule} from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const userModules = [
     MatAutocompleteModule,
@@ -30,10 +31,21 @@ const userModules = [
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
 ];
 
 @NgModule({
     declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
-  imports: [CommonModule, UserRoutingModule, FormsModule, ReactiveFormsModule, FlexLayoutModule, ...userModules, MatToolbarModule, MatCheckboxModule, MatIconModule],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FlexLayoutModule,
+        ...userModules,
+        MatToolbarModule,
+        MatCheckboxModule,
+        MatIconModule,
+    ],
 })
 export class UserModule {}

@@ -1,6 +1,6 @@
 import { Role } from './role.enum';
 import { IAuthStatus } from './auth.status';
-import {PhoneType} from './user-data';
+import { PhoneType } from './user-data';
 
 export interface Phone {
     type: string;

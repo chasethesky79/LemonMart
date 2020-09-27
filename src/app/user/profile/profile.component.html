@@ -36,16 +36,15 @@
                     />
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
-                    <mat-hint *ngIf="yearsOld">{{yearsOld}} years old</mat-hint>
+                    <mat-hint *ngIf="yearsOld">{{ yearsOld }} years old</mat-hint>
                 </mat-form-field>
                 <mat-form-field fxFlex="20%" [formGroup]="userForm.get('address')">
-                  <input type="text" placeholder="Enter Location" matInput formControlName="state"
-                         [matAutocomplete]="auto">
-                  <mat-autocomplete [displayWith]="getOptionText" #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of states" [value]="option">
-                      {{option.name}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input type="text" placeholder="Enter Location" matInput formControlName="state" [matAutocomplete]="auto" />
+                    <mat-autocomplete [displayWith]="getOptionText" #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of states" [value]="option">
+                            {{ option.name }}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </div>
         </form>
@@ -67,28 +66,34 @@
                         </mat-checkbox>
                     </span>
                 </div>
-              <div fxFlex="35%">
-                <div class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index" [formGroup]="phoneControl">
-                  <mat-form-field floatLabel="never">
-                    <mat-select placeholder="Type" formControlName="type">
-                      <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType">{{ phoneType.valueOf() }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="Number" aria-label="Number" formControlName="number" autocomplete="off" />
-                    <mat-error *ngIf="phonesArray.controls[i].get('number').errors?.required && phonesArray.controls[i].get('number').dirty">
-                       Phone number is a required field
-                    </mat-error>
-                    <mat-error *ngIf="phonesArray.controls[i].get('number').errors?.pattern && phonesArray.controls[i].get('number').dirty">
-                      Invalid phone number format
-                    </mat-error>
-                    <mat-hint>Please enter phone number in USA format</mat-hint>
-                  </mat-form-field>
-                  <button mat-icon-button>
-                    <mat-icon>delete</mat-icon>
-                  </button>
+                <div fxFlex="35%">
+                    <div class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index" [formGroup]="phoneControl">
+                        <mat-form-field floatLabel="never">
+                            <mat-select placeholder="Type" formControlName="type">
+                                <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType">{{ phoneType.valueOf() }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Number" aria-label="Number" formControlName="number" autocomplete="off" />
+                            <mat-error
+                                *ngIf="
+                                    phonesArray.controls[i].get('number').errors?.required && phonesArray.controls[i].get('number').dirty
+                                "
+                            >
+                                Phone number is a required field
+                            </mat-error>
+                            <mat-error
+                                *ngIf="phonesArray.controls[i].get('number').errors?.pattern && phonesArray.controls[i].get('number').dirty"
+                            >
+                                Invalid phone number format
+                            </mat-error>
+                            <mat-hint>Please enter phone number in USA format</mat-hint>
+                        </mat-form-field>
+                        <button mat-icon-button (click)="removePhoneControl(phonesArray.controls[i].get('id').value)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
-              </div>
             </div>
         </form>
     </mat-step>
