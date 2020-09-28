@@ -144,4 +144,13 @@ export class ProfileComponent implements OnInit {
         this.phones = this.phones.filter((phone) => phone.id !== id);
         this.ngOnInit();
     }
+
+    addPhoneControl(): void {
+      this.phones = [...this.phones, {
+        id: this.phones.length,
+        number: '233-344-2312',
+        type: PhoneType.Mobile
+      }];
+      this.ngOnInit();
+    }
 }

@@ -67,6 +67,7 @@
                     </span>
                 </div>
                 <div fxFlex="35%">
+                    <div class="phone-control-add"><button (click)="addPhoneControl()" mat-raised-button>Add Phone</button></div>
                     <div class="phone-control" *ngFor="let phoneControl of phonesArray.controls; let i = index" [formGroup]="phoneControl">
                         <mat-form-field floatLabel="never">
                             <mat-select placeholder="Type" formControlName="type">
