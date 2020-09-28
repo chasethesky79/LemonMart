@@ -147,10 +147,11 @@ export class ProfileComponent implements OnInit {
 
     addPhoneControl(): void {
       this.phones = [...this.phones, {
-        id: this.phones.length,
+        id: this.phones.length + 1,
         number: '233-344-2312',
         type: PhoneType.Mobile
       }];
+      console.log(`THIS PHONES ${JSON.stringify(this.phones)}`);
       this.ngOnInit();
     }
 }
