@@ -105,7 +105,7 @@
             <ng-template matStepLabel>Review</ng-template>
             <div>
                 Review and update your user profile
-                <app-view-user [user]="userForm.value"></app-view-user>
+                <app-view-user [userForm] ="userForm"></app-view-user>
             </div>
         </form>
     </mat-step>

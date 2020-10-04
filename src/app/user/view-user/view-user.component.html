@@ -8,7 +8,7 @@
         <p><span class="mat-input bold">Email</span></p>
         <p>{{user?.email}}</p>
         <p><span class="mat-input bold">Date of Birth</span></p>
-        <p>{{user?.dateOfBirth}}</p>
+        <p>{{user?.dateOfBirth | date: 'mediumDate'}}</p>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button mat-raised-button>Edit</button>
