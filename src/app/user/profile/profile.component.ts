@@ -42,11 +42,6 @@ export class ProfileComponent implements OnInit {
             const { userRole } = userStatus;
             const user = this.buildUser(userRole);
             this.isUserAManager = userRole === Role.Manager;
-            // Replacing the return value of userService.getCurrentUser with a static user for now
-            // this.userService
-            //     .getCurrentUser(userId)
-            //     .pipe(filter((user) => !!user))
-            //     .subscribe((user) => this.buildUserForm(user, userRole));
             this.buildUserForm(user);
             this.userForm
                 .get('address')
@@ -154,7 +149,6 @@ export class ProfileComponent implements OnInit {
                 type: PhoneType.Mobile,
             },
         ];
-        console.log(`THIS PHONES ${JSON.stringify(this.phones)}`);
         this.ngOnInit();
     }
 }

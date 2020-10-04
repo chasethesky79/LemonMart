@@ -15,6 +15,7 @@ export interface User {
         middle: string;
         last: string;
     };
+    fullName: string;
     picture: string;
     role: string;
     status: boolean;

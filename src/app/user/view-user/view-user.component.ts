@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { getFullName, User } from '../../models/user';
 
 @Component({
@@ -6,9 +6,14 @@ import { getFullName, User } from '../../models/user';
     templateUrl: './view-user.component.html',
     styleUrls: ['./view-user.component.less'],
 })
-export class ViewUserComponent implements OnInit {
+export class ViewUserComponent implements OnChanges {
     @Input() user: User;
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnChanges(): void {
+      if (this.user) {
+        const { name: { first, last, middle } } = this.user;
+        this.user = { ...this.user, fullName: getFullName(this.user) };
+      }
+    }
 }
