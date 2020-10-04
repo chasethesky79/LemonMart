@@ -76,10 +76,18 @@
                         </mat-form-field>
                         <mat-form-field>
                             <input matInput placeholder="Number" aria-label="Number" formControlName="number" autocomplete="off" />
-                            <mat-error *ngIf="phonesArray.controls[i].get('number')?.errors?.required && phonesArray.controls[i].get('number').dirty">
+                            <mat-error
+                                *ngIf="
+                                    phonesArray.controls[i].get('number')?.errors?.required && phonesArray.controls[i].get('number').dirty
+                                "
+                            >
                                 Phone number is a required field
                             </mat-error>
-                            <mat-error *ngIf="phonesArray.controls[i].get('number')?.errors?.pattern && phonesArray.controls[i].get('number').dirty">
+                            <mat-error
+                                *ngIf="
+                                    phonesArray.controls[i].get('number')?.errors?.pattern && phonesArray.controls[i].get('number').dirty
+                                "
+                            >
                                 Invalid phone number format
                             </mat-error>
                             <mat-hint>Please enter phone number in USA format</mat-hint>
@@ -95,6 +103,10 @@
     <mat-step [stepControl]="userForm">
         <form [formGroup]="userForm">
             <ng-template matStepLabel>Review</ng-template>
+            <div>
+                Review and update your user profile
+                <app-view-user></app-view-user>
+            </div>
         </form>
     </mat-step>
 </mat-horizontal-stepper>

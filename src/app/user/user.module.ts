@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ViewUserComponent } from './view-user/view-user.component';
+import { MatCardModule } from '@angular/material/card';
 
 const userModules = [
     MatAutocompleteModule,
@@ -35,7 +37,7 @@ const userModules = [
 ];
 
 @NgModule({
-    declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
+    declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent, ViewUserComponent],
     imports: [
         CommonModule,
         UserRoutingModule,
@@ -46,6 +48,7 @@ const userModules = [
         MatToolbarModule,
         MatCheckboxModule,
         MatIconModule,
+        MatCardModule,
     ],
 })
 export class UserModule {}
