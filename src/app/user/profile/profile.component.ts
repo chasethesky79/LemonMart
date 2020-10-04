@@ -133,7 +133,6 @@ export class ProfileComponent implements OnInit {
                 )
             ),
         });
-        console.log(`USER FORM VALUE ${JSON.stringify(this.userForm.get('email').value)}`);
     }
 
     removePhoneControl(id: number): void {
