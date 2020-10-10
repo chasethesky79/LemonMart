@@ -160,8 +160,4 @@ export class ProfileComponent implements OnInit {
         catchError(err => this.userError = err)
       );
     }
-
-    updateAddress(): void {
-
-    }
 }

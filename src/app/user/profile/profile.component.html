@@ -136,7 +136,7 @@
               <div class="flex-spacer"></div>
               <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
               <button mat-button color="warn" (click)="stepper.reset()">Reset</button>
-              <button mat-raised-button matStepperNext color="primary" type="submit" (click)="updateAddress()" [disabled]="userForm.invalid">Update</button>
+              <button mat-raised-button matStepperNext color="primary" type="submit" (click)="saveUser()" [disabled]="userForm.invalid">Update</button>
             </div>
         </form>
     </mat-step>
