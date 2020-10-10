@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { IAuthStatus } from '../../models/auth.status';
 import { catchError, map } from 'rxjs/operators';
 import { Phone, User } from '../../models/user';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
