@@ -3,7 +3,7 @@ import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
 import {catchError, map} from 'rxjs/operators';
 import { Phone, User } from '../../models/user';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { Role } from '../../models/role.enum';
 import {
     birthDateValidator,
@@ -50,10 +50,25 @@ export class ProfileComponent implements OnInit {
                 ?.valueChanges.pipe(map((value) => usStateFilter(value)))
                 .subscribe((filteredStates: USState[]) => (this.states = filteredStates));
         }
-        console.log(`FORM VALIDITY STATUS ${this.userForm.invalid}`);
+        this.validateUserForm(this.userForm);
     }
 
-    private buildUser(userRole: string): User {
+  /**
+   * Function that validates the entire form
+   * @param formGroup the user form
+   */
+  private validateUserForm(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateUserForm(control);
+      }
+    });
+  }
+
+  private buildUser(userRole: string): User {
         const user = {
             id: '123',
             email: 'seshadri.bharath@yahoo.com',
