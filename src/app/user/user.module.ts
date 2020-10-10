@@ -19,10 +19,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ViewUserComponent } from './view-user/view-user.component';
 import { MatCardModule } from '@angular/material/card';
 import { UserResolve } from './user.resolve';
 import { UserService } from './user.service';
+import { SharedComponentModule } from '../shared-component/shared-component.module';
 
 const userModules = [
     MatAutocompleteModule,
@@ -39,7 +39,7 @@ const userModules = [
 ];
 
 @NgModule({
-    declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent, ViewUserComponent],
+    declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
     providers: [UserResolve, UserService],
     imports: [
         CommonModule,
@@ -52,6 +52,7 @@ const userModules = [
         MatCheckboxModule,
         MatIconModule,
         MatCardModule,
+        SharedComponentModule
     ],
 })
 export class UserModule {}
