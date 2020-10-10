@@ -21,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { MatCardModule } from '@angular/material/card';
+import { UserResolve } from './user.resolve';
+import { UserService } from './user.service';
 
 const userModules = [
     MatAutocompleteModule,
@@ -38,6 +40,7 @@ const userModules = [
 
 @NgModule({
     declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent, ViewUserComponent],
+    providers: [UserResolve, UserService],
     imports: [
         CommonModule,
         UserRoutingModule,

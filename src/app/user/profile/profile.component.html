@@ -91,36 +91,36 @@
                 </div>
             </div>
             <div fxLayout="column" class="address-section" fxLayoutGap="10px" [formGroup]="userForm.get('address')">
-              <mat-card-subtitle>Address Section</mat-card-subtitle>
-              <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-                <mat-form-field fxFlex="40%">
-                  <input matInput placeholder="Line1" aria-label="Line 1" formControlName="line1" autocomplete="off" />
-                  <mat-error *ngIf="userForm.get('address').get('line1').hasError('required')">Address line1 is required</mat-error>
-                </mat-form-field>
-                <mat-form-field fxFlex="20%">
-                  <input matInput placeholder="Line2" aria-label="Line2" formControlName="line2" autocomplete="off" />
-                  <mat-error *ngIf="userForm.get('address').get('line2').hasError('required')">Address line2 is required</mat-error>
-                </mat-form-field>
-                <mat-form-field fxFlex="40%">
-                  <input matInput placeholder="City" aria-label="City" formControlName="city" autocomplete="off" />
-                  <mat-error *ngIf="userForm.get('address').get('city').hasError('required')">City is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-                <mat-form-field fxFlex="30%">
-                  <input type="text" placeholder="Enter Location" matInput formControlName="state" [matAutocomplete]="auto" />
-                  <mat-autocomplete [displayWith]="getOptionText" #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of states" [value]="option">
-                      {{ option.name }}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-                <mat-form-field fxFlex="20%">
-                  <input matInput placeholder="Zip" aria-label="Zip" formControlName="zip" autocomplete="off" />
-                  <mat-error *ngIf="userForm.get('address').get('zip').hasError('required')">Zip is required</mat-error>
-                  <mat-error *ngIf="userForm.get('address').get('zip').hasError('pattern')">Zip is invalid</mat-error>
-                </mat-form-field>
-              </div>
+                <mat-card-subtitle>Address Section</mat-card-subtitle>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+                    <mat-form-field fxFlex="40%">
+                        <input matInput placeholder="Line1" aria-label="Line 1" formControlName="line1" autocomplete="off" />
+                        <mat-error *ngIf="userForm.get('address').get('line1').hasError('required')">Address line1 is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="20%">
+                        <input matInput placeholder="Line2" aria-label="Line2" formControlName="line2" autocomplete="off" />
+                        <mat-error *ngIf="userForm.get('address').get('line2').hasError('required')">Address line2 is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="40%">
+                        <input matInput placeholder="City" aria-label="City" formControlName="city" autocomplete="off" />
+                        <mat-error *ngIf="userForm.get('address').get('city').hasError('required')">City is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+                    <mat-form-field fxFlex="30%">
+                        <input type="text" placeholder="Enter Location" matInput formControlName="state" [matAutocomplete]="auto" />
+                        <mat-autocomplete [displayWith]="getOptionText" #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of states" [value]="option">
+                                {{ option.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="20%">
+                        <input matInput placeholder="Zip" aria-label="Zip" formControlName="zip" autocomplete="off" />
+                        <mat-error *ngIf="userForm.get('address').get('zip').hasError('required')">Zip is required</mat-error>
+                        <mat-error *ngIf="userForm.get('address').get('zip').hasError('pattern')">Zip is invalid</mat-error>
+                    </mat-form-field>
+                </div>
             </div>
         </form>
     </mat-step>
@@ -129,14 +129,16 @@
             <ng-template matStepLabel>Review</ng-template>
             <div>
                 Review and update your user profile
-                <app-view-user [userForm] ="userForm"></app-view-user>
+                <app-view-user [userForm]="userForm"></app-view-user>
             </div>
             <div fxLayout="row" class="margin-top">
-              <button mat-button matStepperPrevious color="accent">Back</button>
-              <div class="flex-spacer"></div>
-              <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
-              <button mat-button color="warn" (click)="stepper.reset()">Reset</button>
-              <button mat-raised-button matStepperNext color="primary" type="submit" (click)="saveUser()" [disabled]="userForm.invalid">Update</button>
+                <button mat-button matStepperPrevious color="accent">Back</button>
+                <div class="flex-spacer"></div>
+                <div *ngIf="userError" class="mat-caption error">{{ userError }}</div>
+                <button mat-button color="warn" (click)="stepper.reset()">Reset</button>
+                <button mat-raised-button matStepperNext color="primary" type="submit" (click)="saveUser()" [disabled]="userForm.invalid">
+                    Update
+                </button>
             </div>
         </form>
     </mat-step>

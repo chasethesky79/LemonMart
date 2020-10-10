@@ -8,9 +8,7 @@ import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { transformError } from '../utils/error.utils';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class UserService {
     currentUser: Observable<User>;
     constructor(private httpClient: HttpClient, private authService: AuthService) {

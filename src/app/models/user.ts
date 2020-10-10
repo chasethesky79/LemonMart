@@ -37,6 +37,11 @@ export const getFullName = (user: User): string => {
 };
 
 export const getPhoneTypes = () => Object.keys(PhoneType);
+export const phoneList = [
+    { id: 1, type: PhoneType.Home, number: '234-788-1234' },
+    { id: 2, type: PhoneType.Mobile, number: '970-221-2232' },
+    { id: 3, type: PhoneType.Work, number: '223-321-2233' },
+] as Phone[];
 
 export const getAuthStatus = (): IAuthStatus => {
     const item = localStorage.getItem('user-status') || '';

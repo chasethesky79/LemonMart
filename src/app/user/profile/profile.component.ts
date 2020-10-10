@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Phone, User } from '../../models/user';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Role } from '../../models/role.enum';
 import {
     birthDateValidator,
@@ -17,6 +17,8 @@ import {
 } from '../../utils/validations';
 import { PhoneType, USState, usStates } from '../../models/user-data';
 import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
+import { phoneList } from '../../models/user';
 
 @Component({
     selector: 'app-profile',
@@ -24,24 +26,20 @@ import * as moment from 'moment';
     styleUrls: ['./profile.component.less'],
 })
 export class ProfileComponent implements OnInit {
-    constructor(private userService: UserService, private formBuilder: FormBuilder) {}
+    constructor(private userService: UserService, private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
     userForm: FormGroup;
     isUserAManager: boolean;
     states: USState[] = usStates;
     yearsOld: number;
-    phones = [
-        { id: 1, type: PhoneType.Home, number: '234-788-1234' },
-        { id: 2, type: PhoneType.Mobile, number: '970-221-2232' },
-        { id: 3, type: PhoneType.Work, number: '223-321-2233' },
-    ] as Phone[];
     userError: any;
+    phones: Phone[] = [...phoneList];
 
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
         if (userStatus) {
             const { userRole } = userStatus;
-            const user = this.buildUser(userRole);
+            const { user } = this.route.snapshot.data;
             this.isUserAManager = userRole === Role.Manager;
             this.buildUserForm(user);
             this.userForm
@@ -53,42 +51,19 @@ export class ProfileComponent implements OnInit {
         this.validateUserForm(this.userForm);
     }
 
-  /**
-   * Function that validates the entire form
-   * @param formGroup the user form
-   */
-  private validateUserForm(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateUserForm(control);
-      }
-    });
-  }
-
-  private buildUser(userRole: string): User {
-        const user = {
-            id: '123',
-            email: 'seshadri.bharath@yahoo.com',
-            name: {
-                first: 'Bharath',
-                middle: 'M',
-                last: 'Seshadri',
-            },
-            role: userRole,
-            dateOfBirth: new Date(),
-            address: {
-                line1: 'No 3 Shanumugam Street',
-                line2: 'Royapettah',
-                city: 'Chennai',
-                state: '',
-                zip: '600014',
-            },
-            phones: this.phones,
-        } as any;
-        return user;
+    /**
+     * Function that validates the entire form
+     * @param formGroup the user form
+     */
+    private validateUserForm(formGroup: FormGroup): void {
+        Object.keys(formGroup.controls).forEach((field) => {
+            const control = formGroup.get(field);
+            if (control instanceof FormControl) {
+                control.markAsTouched({ onlySelf: true });
+            } else if (control instanceof FormGroup) {
+                this.validateUserForm(control);
+            }
+        });
     }
 
     getOptionText(option: USState): string {
@@ -170,9 +145,9 @@ export class ProfileComponent implements OnInit {
     }
 
     async saveUser(): Promise<void> {
-      this.userService.updateUser(this.userForm.value).pipe(
-        map((res: User) => this.buildUserForm(res)),
-        catchError(err => this.userError = err)
-      );
+        this.userService.updateUser(this.userForm.value).pipe(
+            map((res: User) => this.buildUserForm(res)),
+            catchError((err) => (this.userError = err))
+        );
     }
 }

@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { getFullName, User } from '../../models/user';
-import {FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-view-user',
@@ -13,8 +13,8 @@ export class ViewUserComponent implements OnChanges {
     constructor() {}
 
     ngOnChanges(): void {
-      if (this.userForm) {
-        this.user = { ...this.userForm.value, fullName: getFullName(this.userForm.value), email: this.userForm.get('email').value };
-      }
+        if (this.userForm) {
+            this.user = { ...this.userForm.value, fullName: getFullName(this.userForm.value), email: this.userForm.get('email').value };
+        }
     }
 }
