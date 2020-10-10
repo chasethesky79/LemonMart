@@ -36,18 +36,15 @@ export class ProfileComponent implements OnInit {
     phones: Phone[] = [...phoneList];
 
     ngOnInit(): void {
-        const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
-        if (userStatus) {
-            const { userRole } = userStatus;
-            const { user } = this.route.snapshot.data;
-            this.isUserAManager = userRole === Role.Manager;
-            this.buildUserForm(user);
-            this.userForm
-                .get('address')
-                ?.get('state')
-                ?.valueChanges.pipe(map((value) => usStateFilter(value)))
-                .subscribe((filteredStates: USState[]) => (this.states = filteredStates));
-        }
+        const { user } = this.route.snapshot.data;
+        const { role } = user;
+        this.isUserAManager = role === Role.Manager;
+        this.buildUserForm(user);
+        this.userForm
+            .get('address')
+            ?.get('state')
+            ?.valueChanges.pipe(map((value) => usStateFilter(value)))
+            .subscribe((filteredStates: USState[]) => (this.states = filteredStates));
         this.validateUserForm(this.userForm);
     }
 
