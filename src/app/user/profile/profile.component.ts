@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IAuthStatus } from '../../models/auth.status';
-import { map } from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { Phone, User } from '../../models/user';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Role } from '../../models/role.enum';
 import {
     birthDateValidator,
@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
         { id: 2, type: PhoneType.Mobile, number: '970-221-2232' },
         { id: 3, type: PhoneType.Work, number: '223-321-2233' },
     ] as Phone[];
+    userError: any;
 
     ngOnInit(): void {
         const userStatus: IAuthStatus = localStorage.getItem('user-status') ? JSON.parse(localStorage.getItem('user-status')) : null;
@@ -49,6 +50,7 @@ export class ProfileComponent implements OnInit {
                 ?.valueChanges.pipe(map((value) => usStateFilter(value)))
                 .subscribe((filteredStates: USState[]) => (this.states = filteredStates));
         }
+        console.log(`FORM VALIDITY STATUS ${this.userForm.invalid}`);
     }
 
     private buildUser(userRole: string): User {
@@ -74,8 +76,8 @@ export class ProfileComponent implements OnInit {
         return user;
     }
 
-    getOptionText(option): string {
-        return option.name;
+    getOptionText(option: USState): string {
+        return option?.name;
     }
 
     get phoneTypes(): PhoneType[] {
@@ -150,5 +152,16 @@ export class ProfileComponent implements OnInit {
             },
         ];
         this.ngOnInit();
+    }
+
+    async saveUser(): Promise<void> {
+      this.userService.updateUser(this.userForm.value).pipe(
+        map((res: User) => this.buildUserForm(res)),
+        catchError(err => this.userError = err)
+      );
+    }
+
+    updateAddress(): void {
+
     }
 }
