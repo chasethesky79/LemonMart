@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
-import { getAuthStatus, User } from '../models/user';
+import {getAuthStatus, IUsers, User} from '../models/user';
 import { IAuthStatus } from '../models/auth.status';
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
@@ -24,5 +24,14 @@ export class UserService {
         localStorage.setItem('draft-user', user ? JSON.stringify(user) : '');
         const id = user.id || 0;
         return this.httpClient.put<User>(`${environment.baseUrl}/v1/user/${id}`, user).pipe(catchError(transformError));
+    }
+
+    getUsers(pageSize: number, search = '', pagesToSkip = 0): Observable<IUsers> {
+      const params = {
+        ...(search && { search }),
+        ...(pagesToSkip && { pagesToSkip }),
+        ...(pageSize && { pageSize })
+      } as any;
+      return this.httpClient.get<IUsers>(`${environment.baseUrl}/v1/users`,  { params }).pipe(catchError(transformError));
     }
 }

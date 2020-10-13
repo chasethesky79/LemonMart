@@ -47,3 +47,14 @@ export const getAuthStatus = (): IAuthStatus => {
     const item = localStorage.getItem('user-status') || '';
     return item ? JSON.parse(item) : this.authService.defaultAuthStatus;
 };
+
+export interface ProductFilters {
+  search: string;
+  offset: string;
+  limit: string;
+}
+
+export interface IUsers {
+  items: User[];
+  total: number;
+}
