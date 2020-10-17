@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { getFullName, User } from '../../models/user';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,8 +12,8 @@ export class ViewUserComponent implements OnInit {
     constructor(private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-      const { user } = this.route.snapshot.data;
-      console.log(`USER DATA ${JSON.stringify(user)}`);
-      this.user = { ...user, fullName: getFullName(user) };
+        const { user } = this.route.snapshot.data;
+        console.log(`USER DATA ${JSON.stringify(user)}`);
+        this.user = { ...user, fullName: getFullName(user) };
     }
 }

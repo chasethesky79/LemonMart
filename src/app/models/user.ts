@@ -48,13 +48,13 @@ export const getAuthStatus = (): IAuthStatus => {
     return item ? JSON.parse(item) : this.authService.defaultAuthStatus;
 };
 
-export interface ProductFilters {
-  search: string;
-  offset: string;
-  limit: string;
-}
+export type UserSearchFilter = {
+    search: string;
+    pagesToSkip: string;
+    pageSize: string;
+};
 
 export interface IUsers {
-  items: User[];
-  total: number;
+    items: User[];
+    total: number;
 }

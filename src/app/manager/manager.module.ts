@@ -8,10 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component';
 import { UserTableComponent } from './user-table/user-table.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [ManagerHomeComponent, ManagerComponent, UserManagementComponent, ReceiptLookupComponent, UserTableComponent],
-  imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule],
+    imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class ManagerModule {}

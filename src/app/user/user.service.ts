@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
-import {getAuthStatus, IUsers, User} from '../models/user';
+import { getAuthStatus, IUsers, User, UserSearchFilter } from '../models/user';
 import { IAuthStatus } from '../models/auth.status';
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
@@ -27,11 +27,13 @@ export class UserService {
     }
 
     getUsers(pageSize: number, search = '', pagesToSkip = 0): Observable<IUsers> {
-      const params = {
-        ...(search && { search }),
-        ...(pagesToSkip && { pagesToSkip }),
-        ...(pageSize && { pageSize })
-      } as any;
-      return this.httpClient.get<IUsers>(`${environment.baseUrl}/v1/users`,  { params }).pipe(catchError(transformError));
+        const params = {
+            ...(search && { search }),
+            ...(pagesToSkip && { pagesToSkip }),
+            ...(pageSize && { pageSize }),
+        } as any;
+        return this.httpClient
+            .get<IUsers>(`${environment.baseUrl}/v1/users`, { params })
+            .pipe(catchError(transformError));
     }
 }

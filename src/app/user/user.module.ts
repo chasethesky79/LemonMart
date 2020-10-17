@@ -52,7 +52,7 @@ const userModules = [
         MatCheckboxModule,
         MatIconModule,
         MatCardModule,
-        SharedComponentModule
+        SharedComponentModule,
     ],
 })
 export class UserModule {}
