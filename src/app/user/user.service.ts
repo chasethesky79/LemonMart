@@ -26,7 +26,7 @@ export class UserService {
         return this.httpClient.put<User>(`${environment.baseUrl}/v1/user/${id}`, user).pipe(catchError(transformError));
     }
 
-    getUsers(pageSize: number, search = '', pagesToSkip = 0): Observable<IUsers> {
+    getUsers(pageSize = 10, search = '', pagesToSkip = 0): Observable<IUsers> {
         const params = {
             ...(search && { search }),
             ...(pagesToSkip && { pagesToSkip }),

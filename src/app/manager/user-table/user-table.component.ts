@@ -1,13 +1,14 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { IUsers, User } from '../../models/user';
+import {getFullName, IUsers, User} from '../../models/user';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UserService } from '../../user/user.service';
-import { optionalTextValidator } from '../../utils/validations';
-import { FormControl } from '@angular/forms';
+import {emailValidator, optionalTextValidator} from '../../utils/validations';
+import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { catchError, debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-user-table',
@@ -15,8 +16,9 @@ import { merge, of } from 'rxjs';
     styleUrls: ['./user-table.component.less'],
 })
 export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
-    readonly displayedColumns = ['name', 'email', 'role', 'status', 'id'];
-    readonly dataSource = new MatTableDataSource<User>([]);
+    users: User[];
+    readonly displayedColumns = ['name', 'email', 'role', 'status'];
+    readonly dataSource = new MatTableDataSource<AbstractControl>([]);
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     resultsLength = 0;
@@ -25,12 +27,21 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
     errorText = '';
     skipLoading = false;
     search = new FormControl('', optionalTextValidator);
+    rows: FormArray;
+    userForm = this.fb.group({ users: this.rows });
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder,
+                private cd: ChangeDetectorRef) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+       const { user } = this.route.snapshot.data;
+       this.buildControls([user]);
+    }
 
     ngAfterViewInit(): void {
+        if (!this.paginator || !this.sort) {
+          return;
+        }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -57,8 +68,29 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
                     return of({});
                 })
             )
-            .subscribe((result: IUsers) => (this.dataSource.data = result.items));
+            .subscribe((result: IUsers) => this.buildControls(result.items));
     }
 
     ngOnDestroy(): void {}
+
+  /**
+   * Method that builds array of form controls from user array.
+   * @param users the array of users
+   */
+  private buildControls(users: User[]): void {
+      this.rows = users.reduce((acc, val) => {
+        acc.push(
+          this.fb.group({
+            name: [getFullName(val), Validators.required],
+            id: val.id,
+            email: [val.email, emailValidator],
+            role: val.role,
+            status: val.status
+          })
+        );
+        return acc;
+      }, this.fb.array([]));
+      this.dataSource.data = this.rows.controls;
+      this.cd.markForCheck();
+    }
 }

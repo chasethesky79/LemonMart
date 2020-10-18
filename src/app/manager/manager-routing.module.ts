@@ -26,6 +26,7 @@ const routes: Routes = [
                         path: '',
                         component: UserTableComponent,
                         outlet: 'master',
+                        resolve: { user: UserResolve }
                     },
                     {
                         path: 'user',

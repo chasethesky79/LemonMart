@@ -13,10 +13,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
     declarations: [ManagerHomeComponent, ManagerComponent, UserManagementComponent, ReceiptLookupComponent, UserTableComponent],
   imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule,
-    MatCardModule, MatInputModule],
+    MatCardModule, MatInputModule, MatTableModule, MatSortModule],
 })
 export class ManagerModule {}
