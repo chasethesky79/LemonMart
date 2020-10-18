@@ -5,6 +5,7 @@
           <input type="text" [formControl]="search" matInput uppercase placeholder="Enter search texxt" />
           <mat-icon class="clickable" matPrefix>search</mat-icon>
           <mat-hint>Enter text to search users</mat-hint>
+          <mat-error *ngIf="search.invalid">Invalid search text</mat-error>
         </mat-form-field>
       </div>
     </div>
