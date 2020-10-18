@@ -9,9 +9,14 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { MatIconModule } from '@angular/material/icon';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
     declarations: [ManagerHomeComponent, ManagerComponent, UserManagementComponent, ReceiptLookupComponent, UserTableComponent],
-    imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule,
+    MatCardModule, MatInputModule],
 })
 export class ManagerModule {}

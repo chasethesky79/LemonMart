@@ -1,3 +1,11 @@
-<a mat-button mat-icon-button [routerLink]="['/manager/users', { outlets: { detail: ['user', { userId: 'fakeId' }] } }]" skipLocationChange>
-    <mat-icon>visibility</mat-icon>
-</a>
+<div class="row">
+    <div fxLayout="row" fxLayout.lt-sm="column">
+      <div fxFlex="30%" class="user-search">
+        <mat-form-field floatPlaceholder="never">
+          <input type="text" [formControl]="search" matInput uppercase placeholder="Enter search texxt" />
+          <mat-icon class="clickable" matPrefix>search</mat-icon>
+          <mat-hint>Enter text to search users</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+</div>
