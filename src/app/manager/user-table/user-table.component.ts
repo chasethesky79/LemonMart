@@ -17,7 +17,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
     users: User[];
-    readonly displayedColumns = ['name', 'email', 'role', 'status'];
+    readonly displayedColumns = ['name', 'email', 'role', 'status', 'id'];
     readonly dataSource = new MatTableDataSource<AbstractControl>([]);
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -35,6 +35,7 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
        const { user } = this.route.snapshot.data;
+       this.isLoadingResults = false;
        this.buildControls([user]);
     }
 

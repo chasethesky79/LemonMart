@@ -12,8 +12,9 @@ export class ViewUserComponent implements OnInit {
     constructor(private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        const { user } = this.route.snapshot.data;
-        console.log(`USER DATA ${JSON.stringify(user)}`);
-        this.user = { ...user, fullName: getFullName(user) };
+      this.route.params.subscribe(params => {
+        const { id } = params;
+        console.log(`USER ID IN DETAILS PAGE ${id}`);
+      });
     }
 }
