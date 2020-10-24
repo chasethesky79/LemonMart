@@ -17,10 +17,11 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SharedComponentModule} from '../shared-component/shared-component.module';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
     declarations: [ManagerHomeComponent, ManagerComponent, UserManagementComponent, ReceiptLookupComponent, UserTableComponent],
   imports: [CommonModule, ManagerRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule,
-    MatCardModule, MatInputModule, MatTableModule, MatSortModule, MatProgressSpinnerModule, SharedComponentModule],
+    MatCardModule, MatInputModule, MatTableModule, MatSortModule, MatProgressSpinnerModule, SharedComponentModule, MatPaginatorModule],
 })
 export class ManagerModule {}
